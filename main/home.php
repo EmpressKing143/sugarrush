@@ -1,52 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/sushi.png" />
-    <link rel="stylesheet" href="../css/home.css">
-    <title>SUGAR RUSH</title>
-  </head>
+<?php require("head.php"); ?>
   <body>
-    <header>
-      <nav class="header__nav">
-        <div img src="../assets/logo1.png" class="header_
-        _logo" >
-          <h4 data-aos="fade-down"> <img src="../assets/logo1.png" alt="logo" style="width: 155px; height: 55px; padding: 3px; padding-left: 20px; padding-top: 10px;"></h4>
-          <div class="header__logo-overlay"></div>
-        </div>
-
-        <ul class="header__menu" data-aos="fade-down">
-          <li>
-            <a href="#menu">Menu</a>
-          </li>
-          <li>
-            <a href="#food">Food</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#about-us">About Us</a>
-          </li>
-          <li>
-            <img src="../assets/search.svg" alt="search" />
-          </li>
-        </ul>
-
-        <ul class="header__menu-mobile" data-aos="fade-down">
-          <li>
-            <img src="../assets/menu.svg" alt="menu" />
-          </li>
-        </ul>
-      </nav>
-    </header>
-
+  <?php require("header.php"); ?>
     <section class="hero">
       <div class="hero-image">
-        
-        />
+      
         <h2 data-aos="fade-up">
           SUGAR RUSH </br>
           SUGAR RUSH </br>
@@ -342,30 +300,7 @@
       </div>
     </section>
 
-    <footer class="footer flex-between">
-      <h3 class="footer__logo">
-        <span><img src="../assets/logo1.png" class="logofooter"></span>
-      </h3>
-
-      <ul class="footer__nav">
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#food">Food</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about-us">About Us</a></li>
-      </ul>
-
-      <ul class="footer__social">
-        <li class="flex-center">
-          <img src="../assets/facebook.svg" alt="facebook" />
-        </li>
-        <li class="flex-center">
-          <img src="../assets/instagram.svg" alt="instagram" />
-        </li>
-        <li class="flex-center">
-          <img src="../assets/twitter.svg" alt="twitter" />
-        </li>
-      </ul>
-    </footer>
+    <?php require("footer.php"); ?>
 
     <script src="js/script.js" type="module"></script>
   </body>

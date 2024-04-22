@@ -2,24 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
 @import url('https://fonts.cdnfonts.com/css/jalibar');
 
-/* css file imports */
 @import url("../css/sections/header.css");
-@import url("Sections/hero.css");
-@import url("Sections/about.css");
-@import url("Sections/popular.css");
-@import url("Sections/trending.css");
-@import url("Sections/subscribe.css");
-@import url("Sections/footer.css");
+@import url("sections/hero.css");
+@import url("sections/about.css");
+@import url("sections/popular.css");
+@import url("sections/trending.css");
+@import url("sections/subscribe.css");
+@import url("sections/footer.css");
 
-/* CSS variables for reusablity across all files (including above imported) */
 :root {
   --playfair-display: "Playfair Display", serif;
   --plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
   --home-selection: "Jalibar", "display";
 
   --primary-color: #FF9999;
-  --secondary-color:#485c66;
-  ;
+  --secondary-color: #485c66;
 
   --black-200: #020202;
   --black-300: #333333;
@@ -39,13 +36,14 @@
 }
 
 body {
-  max-width: 1280px;
+  position: cover;
+  max-width: auto;
   margin: 0 auto;
   background-color: var(--color-creamson);
 }
 
 a {
-  font:var(--home-selection);
+  font: var(--home-selection);
   text-decoration: none;
   color: inherit;
   display: inline-block;
@@ -55,12 +53,11 @@ a {
 }
 
 a:hover {
-  background-color:var(--primary-color);
+  background-color: var(--primary-color);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   font-style: var(--primary-color) var(--home-selection);
   color: floralwhite;
 }
-
 
 .flex-center {
   display: flex;
@@ -78,10 +75,8 @@ a:hover {
   font-size: 18px;
   font-weight: 400;
   font-family: var(--plus-jakarta-sans);
-
   color: var(--primary-color);
   opacity: 0.8;
-
   letter-spacing: -0.01em;
 }
 
@@ -89,9 +84,7 @@ a:hover {
   font-size: 64px;
   font-weight: 600;
   font-family: var(--playfair-display);
-
   color: var(--secondary-color);
-
   margin-top: 16px;
 }
 
@@ -99,13 +92,10 @@ a:hover {
   font-size: 18px;
   font-weight: 400;
   font-family: var(--plus-jakarta-sans);
-
   line-height: 36px;
   letter-spacing: -0.01em;
-
   color: var(--secondary-color);
   opacity: 0.8;
-
   margin: 32px 0px;
 }
 
@@ -120,89 +110,70 @@ a:hover {
   scrollbar-width: none; /* Firefox */
 }
 
-/* START: about us media queries */
-@media screen and (max-width: 1024px) {
-  .about-us {
-    flex-direction: column;
-  }
-
-  .about-us__image {
-    flex-direction: row;
-  }
-
-  .about-us__image-sushi3 {
-    border-bottom: none;
-    border-right: 8px solid var(--color-creamson);
-  }
-
-  .about-us__button {
-    display: none;
-  }
+/* Header Styles */
+.header__nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-@media screen and (max-width: 750px) {
-  .about-us__image {
-    flex-direction: column;
-  }
-
-  .about-us__image-sushi3 {
-    border-bottom: 8px solid var(--color-creamson);
-    border-right: none;
-  }
-
-  .about-us__button {
-    display: block;
-    top: 47%;
-  }
+.header__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
 }
 
-@media screen and (max-width: 550px) {
-  .about-us__image-sushi2 img,
-  .about-us__image-sushi3 img {
-    width: 50%;
-    height: 160px;
-
-    object-fit: contain;
-  }
-
-  .about-us__image div {
-    padding: 32px;
-  }
-
-  .about-us__button {
-    top: 44%;
-  }
-
-  .about-us__content {
-    padding: 32px;
-  }
+.header__menu-mobile {
+  display: none;
 }
-/* END: about us media queries */
 
+.header__menu, .header__menu-mobile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-/* START: header media querie */
+.header__menu li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.header__menu li:last-child {
+  margin-right: 0;
+}
+
+.header__menu a {
+  color: var(--color-white);
+  font-family: var(--plus-jakarta-sans);
+  font-size: 18px;
+}
+
+.header__menu img {
+  width: 24px;
+  height: 24px;
+}
+
 @media screen and (max-width: 900px) {
-  .header__nav {
-    background: var(--primary-color);
-  }
-
   .header__menu {
     display: none;
   }
 
   .header__menu-mobile {
     display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: var(--primary-color);
+  }
+
+  .header__menu-mobile li {
+    margin-right: 0;
   }
 }
 
-@media screen and (max-width: 550px) {
-  .header__logo {
-    padding-left: 0;
-  }
-}
-/* END: header media queries */
-
-/* START: hero media queries */
+/* Hero Media Queries */
 @media screen and (max-width: 1060px) {
   .hero {
     flex-direction: column;
@@ -210,7 +181,6 @@ a:hover {
 
   .hero-image img {
     width: 100%;
-
     transform: matrix(1, 0.05, 0, 1.25, 0, 0) !important;
   }
 }
@@ -248,9 +218,8 @@ a:hover {
     padding: 32px;
   }
 }
-/* END: hero media queries */
 
-/* START: popular media queries */
+/* Popular Media Queries */
 @media screen and (max-width: 550px) {
   .popular-foods {
     padding: 64px 32px;
@@ -261,9 +230,8 @@ a:hover {
     min-width: 100%;
   }
 }
-/* END: popular media queries */
 
-/* START: subscribe media queries */
+/* Subscribe Media Queries */
 @media screen and (max-width: 550px) {
   .subscription {
     padding: 64px 32px;
@@ -277,17 +245,14 @@ a:hover {
   .subscription__form {
     flex-direction: column;
     gap: 20px;
-
     min-width: 100%;
     border-radius: 20px;
     padding: 0;
-
     border: none;
   }
 
   .subscription__form input {
     min-height: 50px;
-
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 10px 20px;
     border-radius: 30px;
@@ -297,9 +262,8 @@ a:hover {
     min-width: 100%;
   }
 }
-/* END: subscribe media queries */
 
-/* START: trending media queries */
+/* Trending Media Queries */
 @media screen and (max-width: 1024px) {
   .trending-sushi {
     flex-direction: column;
@@ -333,4 +297,3 @@ a:hover {
     padding: 32px;
   }
 }
-/* END: trending media queries */
