@@ -6,14 +6,19 @@
 ?>
 
 <?php 
-if ($username == " "){
+if (empty($username)){
     echo " The username is empty". "<br>";
 } else {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     echo $username."<br>";
 }
+$email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
+if ($email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
     echo $email."<br>";
-echo $password."<br>";
+} else {
+    echo "The email is invalid"."<br>";
+}
+    echo $password."<br>";
 ?>
 
 
