@@ -6,11 +6,11 @@
 ?>
 
 <?php 
-if isset($username){
-$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-    echo $username."<br>";
-} else {
+if ($username == " "){
     echo " The username is empty". "<br>";
+} else {
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+    echo $username."<br>";
 }
     echo $email."<br>";
 echo $password."<br>";
