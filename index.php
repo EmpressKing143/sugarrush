@@ -1,14 +1,14 @@
 <?php
-session_start(); //hello reynan
+// session_start(); //hello reynan
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['username'] = $_POST['username'] ?? '';
-    $_SESSION['email'] = $_POST['email'] ?? '';
-    $_SESSION['password'] = $_POST['password'] ?? '';
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     $_SESSION['username'] = $_POST['username'] ?? '';
+//     $_SESSION['email'] = $_POST['email'] ?? '';
+//     $_SESSION['password'] = $_POST['password'] ?? '';
 
-    header("Location: loginmodule/addinfo.php");
-    exit;
-}
+//     header("Location: loginmodule/addinfo.php");
+//     exit;
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="index-form">
             <h2>Sign Up</h2>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action=" display/displayDetails.php <?php //echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
                     <div class="input-icon">
                         <span class="icon"><i class="fa-solid fa-user" style="color: #485c66;"></i></span>
