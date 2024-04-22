@@ -2,7 +2,7 @@
 require_once('../databaseconn/credential.php');
 
 // Initialize error message variable
-$error_message = "";
+$error = "";
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["email"]) && isset($_GET["password"])) {
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["email"]) && isset($_GET[
         exit();
     } else {
         // User does not exist, set error message
-        $error_message = "Invalid email or password";
+        $error = "Invalid email or password";
     }
 
     // Close the statement and connection
@@ -58,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["email"]) && isset($_GET[
     <div class="container">
         <div class="index-form">
             <h2>Log In</h2>
-            <?php if(!empty($error_message)) { ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
+            <?php if(!empty($error)) { ?>
+                <p style="color: red;"><?php echo $error; ?></p>
             <?php } ?>
             <form method="get">
                 <div class="form-group">
