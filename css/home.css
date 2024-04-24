@@ -123,7 +123,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: var(--primary-color);
+  background-color: #485C66;
 }
 
 .header__menu-mobile {
@@ -165,7 +165,7 @@ a:hover {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
-    background-color: var(--primary-color);
+    background-color: #485C66;
   }
 
   .header__menu-mobile li {
@@ -296,4 +296,34 @@ a:hover {
   .trending__content {
     padding: 32px;
   }
+}
+
+.sidebar {
+  width: 0;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333; /* Change as needed */
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidebar__menu {
+  padding: 20px;
+  list-style-type: none;
+}
+
+.sidebar__menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar__menu a {
+  color: #fff; /* Change as needed */
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar.open {
+  width: 250px; /* Adjust as needed */
 }
