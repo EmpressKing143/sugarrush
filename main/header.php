@@ -8,10 +8,10 @@
 
         <ul class="header__menu" data-aos="fade-down">
           <li>
-            <a href="#menu">Menu</a>
+            <a href="#home">Home</a>
           </li>
           <li>
-            <a href="#menu">Home</a>
+            <a href="#menu">Popular</a>
           </li>
           <li>
             <a href="#food">Food</a>
