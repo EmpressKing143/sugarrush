@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+    <head><link rel="icon" type="image" href="../image/icon.png"></head>
 <?php require("head.php"); ?>
 <body>
     <?php require("header.php"); ?>
