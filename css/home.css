@@ -133,7 +133,7 @@ a:hover {
 .header__menu, .header__menu-mobile {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 .header__menu li {
@@ -187,7 +187,7 @@ a:hover {
 
 @media screen and (max-width: 750px) {
   .hero-image h2 {
-    font-size: 70px;
+    font-size: 20px;
     line-height: px;
   }
 }
