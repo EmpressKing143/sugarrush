@@ -61,6 +61,8 @@
           <img class="popular-foods__card-image" src="../assets/sushi-10.png" alt="sushi-10" />
           <h4 class="popular-foods__card-title">Ramen Legendo</h4>
 
+        <img src="../image/cart.png" style="font-size: 50px">
+
           <div class="popular-foods__card-details flex-between">
             <div class="popular-foods__card-rating">
               <img src="../assets/star.svg" alt="star" />
