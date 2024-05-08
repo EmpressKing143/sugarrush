@@ -232,8 +232,6 @@ header {
     background-color: #485c66;
     height: 69px;
 }
-
-
 .order-now {
     position: absolute;
     top: 602px;
@@ -308,13 +306,16 @@ header {
     object-fit: cover;
 }
 .vector-icon2 {
-        width: 100%;
-        position: relative;
-        max-width: 100%;
-        overflow: hidden;
-        height: 33.7px;
-  
-  
+    position: absolute;
+    height: 3.37%;
+    width: 2.71%;
+    top: 92.99%;
+    right: 10.14%;
+    bottom: 3.63%;
+    left: 87.15%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
 }
 .mditwitter-icon {
     position: absolute;
