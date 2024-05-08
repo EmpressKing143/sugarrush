@@ -57,22 +57,22 @@ include 'components/add_cart.php';
          <div class="swiper-slide slide">
             <div class="content">
                <span>Order Online</span>
-               <h3>chezzy hamburger</h3>
+               <h3>Palamig</h3>
                <a href="menu.php" class="btn">See Menus</a>
             </div>
             <div class="image">
-               <img src="images/cakedrink.png" alt="">
+               <img src="images/halohalo.png" alt="">
             </div>
          </div>
 
          <div class="swiper-slide slide">
             <div class="content">
                <span>Order Online</span>
-               <h3>rosted chicken</h3>
+               <h3>Refreshing Beverages</h3>
                <a href="menu.php" class="btn">See Menus</a>
             </div>
             <div class="image">
-               <img src="images/cakedrink.png" alt="">
+               <img src="images/drinks.png" alt="">
             </div>
          </div>
 

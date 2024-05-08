@@ -53,7 +53,7 @@ if(isset($_SESSION['user_id'])){
       <div class="content">
          <h3>Why Choose Us?</h3>
          <p>Our mission is to infuse the essence of heartfelt care and generosity into every dessert we create, providing our customers with an extraordinary dining experience. We strive to offer delectable treats that not only satisfy the taste buds but also warm the soul, leaving our customers feeling embraced by the warmth and generosity.</p>
-         <a href="menu.html" class="btn">Our Menu</a>
+         <a href="menu.php" class="btn">Our Menu</a>
       </div>
 
    </div>
@@ -73,19 +73,16 @@ if(isset($_SESSION['user_id'])){
       <div class="box">
          <img src="images/step-1.png" alt="">
          <h3>Choose Order</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
       </div>
 
       <div class="box">
          <img src="images/step-2.png" alt="">
          <h3>Fast Delivery</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
       </div>
 
       <div class="box">
          <img src="images/step-3.png" alt="">
          <h3>Enjoy Food</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
       </div>
 
    </div>
