@@ -70,14 +70,15 @@ if(isset($_GET['delete'])){
       <p> Number : <span><?= $fetch_orders['number']; ?></span> </p>
       <p> Address : <span><?= $fetch_orders['address']; ?></span> </p>
       <p> Total Products : <span><?= $fetch_orders['total_products']; ?></span> </p>
-      <p> Total Price : <span>$<?= $fetch_orders['total_price']; ?>/-</span> </p>
+      <p> Total Price : <span>₱<?= $fetch_orders['total_price']; ?>/-</span> </p>
       <p> Payment Method : <span><?= $fetch_orders['method']; ?></span> </p>
       <form action="" method="POST">
          <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
          <select name="payment_status" class="drop-down">
             <option value="" selected disabled><?= $fetch_orders['payment_status']; ?></option>
-            <option value="pending">Pending</option>
-            <option value="completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
          </select>
          <div class="flex-btn">
             <input type="submit" value="update" class="btn" name="update_payment">
