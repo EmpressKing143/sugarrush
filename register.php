@@ -20,44 +20,41 @@ if(isset($_POST['submit'])){
    $number = filter_var($number, FILTER_SANITIZE_STRING);
    $pass = $_POST['pass'];
    $cpass = $_POST['cpass'];
-   if (filter_var($name, FILTER_VALIDATE_) === false) {
+
+   if (filter_var($name, FILTER_VALIDATE_INT) !== false) {
       $message[] = 'Name is invalid!';
-   } else {
-   if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-      $message[] = 'Email is invalid!';
-   } else {
-      if (filter_var($number, FILTER_VALIDATE_INT) === false) {
-         $message[] = 'Number is invalid!';
-      } else {
-            
-         // Store the password as plain text
-         $plain_password = $pass;
+      } else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+         $message[] = 'Email is invalid!';
+      } else if (filter_var($number, FILTER_VALIDATE_INT) === false) {
+            $message[] = 'Number is invalid!';
+         } else {
+               
+            // Store the password as plain text
+            $plain_password = $pass;
 
-         $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
-         $select_user->execute([$email, $number]);
-         $row = $select_user->fetch(PDO::FETCH_ASSOC);
+            $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
+            $select_user->execute([$email, $number]);
+            $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
-         if($select_user->rowCount() > 0){
-            $message[] = 'Email or number already exists!';
-         }else{
-            if($pass != $cpass){
-               $message[] = 'Confirm password not matched!';
+            if($select_user->rowCount() > 0){
+               $message[] = 'Email or number already exists!';
             }else{
-               $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
-               $insert_user->execute([$name, $email, $number, $plain_password]); // Store plain password
-               $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-               $select_user->execute([$email]);
-               $row = $select_user->fetch(PDO::FETCH_ASSOC);
-               if($select_user->rowCount() > 0){
-                  $_SESSION['user_id'] = $row['id'];
-                  header('location: home.php');
+               if($pass != $cpass){
+                  $message[] = 'Confirm password not matched!';
+               }else{
+                  $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
+                  $insert_user->execute([$name, $email, $number, $plain_password]); // Store plain password
+                  $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+                  $select_user->execute([$email]);
+                  $row = $select_user->fetch(PDO::FETCH_ASSOC);
+                  if($select_user->rowCount() > 0){
+                     $_SESSION['user_id'] = $row['id'];
+                     header('location: home.php');
+                  }
                }
             }
          }
       }
-   }
-
-}
 
 ?>
 
