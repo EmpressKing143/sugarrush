@@ -66,7 +66,7 @@
       		<p class="sugar-rush">Customers</p>
     	</div>
     	<div class="love-the-flavors">“Love the flavors and irresistible textures keep me coming back for more go-to spot for satisfying my sweet tooth.”</div>
-    	<img class="logo1-icon" alt="" src="logo1.png">
+    	<img class="logo1-icon" alt="" src="../assets/logo1.png">
     	
     	<img class="vector-icon2" alt="" src="../assets/Vector.svg">
     	
