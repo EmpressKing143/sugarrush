@@ -69,7 +69,7 @@ if(!isset($admin_id)){
          }
       ?>
       <h3><span>₱</span><?= $total_completes; ?><span>/-</span></h3>
-      <p>total completes</p>
+      <p>Total Completes</p>
       <a href="placed_orders.php" class="btn">See Orders</a>
    </div>
 

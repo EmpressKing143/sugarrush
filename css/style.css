@@ -235,7 +235,7 @@ section{
 }
 
 .header .flex .icons > *:hover{
-   color: var(--yellow);
+   color: var(--primary-color);
 }
 
 .header .flex .icons span{
@@ -716,7 +716,7 @@ section{
 }
 
 .search-form form .fa-search:hover{
-   background-color: var(--yellow);
+   background-color: var(--primary-color);
    color:var(--black);
 }
 
