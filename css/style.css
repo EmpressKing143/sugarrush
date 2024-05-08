@@ -356,7 +356,7 @@ section{
 }
 
 .category .box-container .box:hover img{
-   filter: invert(1);
+   filter: invert(50%);
 }
 
 .category .box-container .box:hover h3{
