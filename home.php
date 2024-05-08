@@ -1,4 +1,4 @@
- <?php  //reynan
+<?php
 
 include 'components/connect.php';
 
@@ -10,9 +10,45 @@ if(isset($_SESSION['user_id'])){
    $user_id = '';
 };
 
-include 'components/add_cart.php';
+if(isset($_POST['submit'])){
 
-?> 
+   $name = $_POST['name'];
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $email = $_POST['email'];
+   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $number = $_POST['number'];
+   $number = filter_var($number, FILTER_SANITIZE_STRING);
+   $pass = $_POST['pass'];
+   $cpass = $_POST['cpass'];
+
+   // Store the password as plain text
+   $plain_password = $pass;
+
+   $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
+   $select_user->execute([$email, $number]);
+   $row = $select_user->fetch(PDO::FETCH_ASSOC);
+
+   if($select_user->rowCount() > 0){
+      $message[] = 'Email or number already exists!';
+   }else{
+      if($pass != $cpass){
+         $message[] = 'Confirm password not matched!';
+      }else{
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
+         $insert_user->execute([$name, $email, $number, $plain_password]); // Store plain password
+         $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+         $select_user->execute([$email]);
+         $row = $select_user->fetch(PDO::FETCH_ASSOC);
+         if($select_user->rowCount() > 0){
+            $_SESSION['user_id'] = $row['id'];
+            header('location: home.php');
+         }
+      }
+   }
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +56,7 @@ include 'components/add_cart.php';
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
-
-   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+   <title>Register</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -32,171 +66,30 @@ include 'components/add_cart.php';
 
 </head>
 <body>
-
+   
+<!-- header section starts  -->
 <?php include 'components/user_header.php'; ?>
+<!-- header section ends -->
 
+<section class="form-container">
 
-
-<section class="hero">
-
-   <div class="swiper hero-slider">
-
-      <div class="swiper-wrapper">
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>Order Online</span>
-               <h3>Delicious Drinks</h3>
-               <a href="menu.php" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/cakedrink.png" alt="">
-            </div>
-         </div>
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>Order Online</span>
-               <h3>chezzy hamburger</h3>
-               <a href="menu.php" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/cakedrink.png" alt="">
-            </div>
-         </div>
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>Order Online</span>
-               <h3>rosted chicken</h3>
-               <a href="menu.php" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/cakedrink.png" alt="">
-            </div>
-         </div>
-
-      </div>
-
-      <div class="swiper-pagination"></div>
-
-   </div>
+   <form action="" method="post">
+      <h3>Register Now</h3>
+      <input type="text" name="name" required placeholder="Enter your name" class="box" maxlength="50">
+      <input type="email" name="email" required placeholder="Enter your email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="number" name="number" required placeholder="Enter your number" class="box" min="0" max="9999999999" maxlength="10">
+      <input type="password" name="pass" required placeholder="Enter your password" class="box" maxlength="50">
+      <input type="password" name="cpass" required placeholder="Confirm your password" class="box" maxlength="50">
+      <input type="submit" value="Register Now" name="submit" class="btn">
+      <p>Already have an account? <a href="login.php">Login now</a></p>
+   </form>
 
 </section>
-
-<section class="category">
-
-   <h1 class="title">food category</h1>
-
-   <div class="box-container">
-
-      <a href="category.php?category=fast food" class="box">
-         <img style="font-size: 15rem; "src="images/cake.png" alt="">
-         <h3>Cakes</h3>
-      </a>
-
-      <a href="category.php?category=main dish" class="box">
-         <img src="images/cat-2.png" alt="">
-         <h3>Pastries</h3>
-      </a>
-
-      <a href="category.php?category=drinks" class="box">
-         <img src="images/cat-3.png" alt="">
-         <h3>Drinks</h3>
-      </a>
-
-      <a href="category.php?category=desserts" class="box">
-         <img src="images/cat-4.png" alt="">
-         <h3>Confections</h3>
-      </a>
-
-   </div>
-
-</section>
-
-
-
-
-<section class="products">
-
-   <h1 class="title">Latest Dishes</h1>
-
-   <div class="box-container">
-
-      <?php
-         $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
-         $select_products->execute();
-         if($select_products->rowCount() > 0){
-            while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){
-      ?>
-      <form action="" method="post" class="box">
-         <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-         <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
-         <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
-         <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
-         <a href="quick_view.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
-         <button type="submit" class="fas fa-shopping-cart" name="add_to_cart"></button>
-         <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-         <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
-         <div class="name"><?= $fetch_products['name']; ?></div>
-         <div class="flex">
-            <div class="price"><span>₱</span><?= $fetch_products['price']; ?></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
-         </div>
-      </form>
-      <?php
-            }
-         }else{
-            echo '<p class="empty">no products added yet!</p>';
-         }
-      ?>
-
-   </div>
-
-   <div class="more-btn">
-      <a href="menu.php" class="btn">View All</a>
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
-
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
-
-<script>
-
-var swiper = new Swiper(".hero-slider", {
-   loop:true,
-   grabCursor: true,
-   effect: "flip",
-   pagination: {
-      el: ".swiper-pagination",
-      clickable:true,
-   },
-});
-
-</script>
 
 </body>
 </html>
