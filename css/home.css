@@ -224,12 +224,16 @@ header {
     height: 69px;
 }
 .rectangle-order {
-    width: 100%;
+    top: 583px;
+    left: 730px;
+    width: 18%;
     position: relative;
     border-radius: 50px;
     background-color: #485c66;
     height: 69px;
 }
+
+
 .order-now {
     position: absolute;
     top: 602px;
@@ -304,16 +308,13 @@ header {
     object-fit: cover;
 }
 .vector-icon2 {
-    position: absolute;
-    height: 3.37%;
-    width: 2.71%;
-    top: 92.99%;
-    right: 10.14%;
-    bottom: 3.63%;
-    left: 87.15%;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
+        width: 100%;
+        position: relative;
+        max-width: 100%;
+        overflow: hidden;
+        height: 33.7px;
+  
+  
 }
 .mditwitter-icon {
     position: absolute;
