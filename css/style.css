@@ -359,6 +359,7 @@ section{
 }
 
 .category .box-container .box:hover img{
+   filter: invert(32%) sepia(33%) saturate(300%) hue-rotate(155deg) brightness(95%) contrast(89%);
    filter: invert(1);
 }
 
