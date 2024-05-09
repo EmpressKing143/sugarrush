@@ -33,5 +33,5 @@
 </footer>
 
 <div class="loader">
-   <img src="images/loader.gif" alt="">
+      <img src="images/loader1.gif" alt="">
 </div>

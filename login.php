@@ -13,7 +13,7 @@ if(isset($_SESSION['user_id'])){
 if(isset($_POST['submit'])){
 
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_EMAIL); // Changed to FILTER_SANITIZE_EMAIL for email validation
+   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
    $pass = $_POST['pass'];
 
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
@@ -21,7 +21,6 @@ if(isset($_POST['submit'])){
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
    if($select_user->rowCount() > 0){
-      // Verify the password
       if($pass == $row['password']){
          $_SESSION['user_id'] = $row['id'];
          header('location: home.php');

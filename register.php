@@ -4,6 +4,8 @@ include 'components/connect.php';
 
 session_start();
 
+$message = [];
+
 if(isset($_SESSION['user_id'])){
    $user_id = $_SESSION['user_id'];
 }else{
@@ -21,40 +23,41 @@ if(isset($_POST['submit'])){
    $pass = $_POST['pass'];
    $cpass = $_POST['cpass'];
 
-   if (filter_var($name, FILTER_VALIDATE_INT) !== false) {
-      $message[] = 'Name is invalid!';
-      } else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-         $message[] = 'Email is invalid!';
-      } else if (filter_var($number, FILTER_VALIDATE_INT) === false) {
-            $message[] = 'Number is invalid!';
-         } else {
-               
-            // Store the password as plain text
-            $plain_password = $pass;
+   if (preg_match('/[0-9]/', $name)) {
+      $message[] = 'Name should not contain numbers!';
+   } 
+   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $message[] = 'Email is invalid!';
+   }
+   if (filter_var($number, FILTER_VALIDATE_INT)) {
+      $message[] = 'Number is invalid!';
+   }
+   if (empty($pass) || $pass != $cpass) {
+      $message[] = 'Password should not be null or do not match!';
+   }
 
-            $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
-            $select_user->execute([$email, $number]);
-            $row = $select_user->fetch(PDO::FETCH_ASSOC);
+   if (empty($message)) {
+      $plain_password = $pass;
 
-            if($select_user->rowCount() > 0){
-               $message[] = 'Email or number already exists!';
-            }else{
-               if($pass != $cpass){
-                  $message[] = 'Confirm password not matched!';
-               }else{
-                  $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
-                  $insert_user->execute([$name, $email, $number, $plain_password]); // Store plain password
-                  $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-                  $select_user->execute([$email]);
-                  $row = $select_user->fetch(PDO::FETCH_ASSOC);
-                  if($select_user->rowCount() > 0){
-                     $_SESSION['user_id'] = $row['id'];
-                     header('location: home.php');
-                  }
-               }
-            }
+      $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
+      $select_user->execute([$email, $number]);
+      $row = $select_user->fetch(PDO::FETCH_ASSOC);
+
+      if($select_user->rowCount() > 0){
+         $message[] = 'Email or number already exists!';
+      }else{
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
+         $insert_user->execute([$name, $email, $number, $plain_password]);
+         $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+         $select_user->execute([$email]);
+         $row = $select_user->fetch(PDO::FETCH_ASSOC);
+         if($select_user->rowCount() > 0){
+            $_SESSION['user_id'] = $row['id'];
+            header('location: home.php');
          }
       }
+   }
+}
 
 ?>
 
@@ -83,11 +86,18 @@ if(isset($_POST['submit'])){
 
    <form action="" method="post">
       <h3>Register Now</h3>
-      <input type="text" name="name" required placeholder="Enter your name" class="box" maxlength="50">
+      <?php if (!empty($message) && is_array($message)) { ?>
+         <div class="error">
+            <?php foreach ($message as $msg) {
+               echo "<p>$msg</p>";
+            } ?>
+         </div>
+      <?php } ?>
+      <input type="text" name="name" required placeholder="Enter your name" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="text" name="email" required placeholder="Enter your email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="text" name="number" required placeholder="Enter your number" class="box" min="0" max="9999999999" maxlength="10">
-      <input type="password" name="pass" required placeholder="Enter your password" class="box" maxlength="50">
-      <input type="password" name="cpass" required placeholder="Confirm your password" class="box" maxlength="50">
+      <input type="text" name="number" required placeholder="Enter your number" class="box" min="0" max="9999999999" maxlength="11" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="Enter your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="cpass" required placeholder="Confirm your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="Register Now" name="submit" class="btn">
       <p>Already have an account? <a href="login.php">Login now</a></p>
    </form>

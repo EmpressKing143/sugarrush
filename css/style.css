@@ -1120,3 +1120,13 @@ section{
    }   
 
 }
+
+/* Add this to your existing CSS */
+.error {
+   color: red;
+   margin-bottom: 1rem;
+}
+
+.error p {
+   margin: 0;
+}
