@@ -1,4 +1,4 @@
- <?php  //reynan
+ <?php  //reynan-lantawa kun ga sync simo.  ok na
 
 include 'components/connect.php';
 
