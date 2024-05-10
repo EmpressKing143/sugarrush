@@ -92,10 +92,10 @@ if(isset($_POST['update'])){
       <span>Update Category</span>
       <select name="category" class="box" required>
          <option selected value="<?= $fetch_products['category']; ?>"><?= $fetch_products['category']; ?></option>
-         <option value="main dish">Pastries</option>
-         <option value="fast food">Cakes</option>
-         <option value="drinks">Drinks</option>
-         <option value="desserts">Confections</option>
+         <option value="Pastries">Pastries</option>
+         <option value="Cakes">Cakes</option>
+         <option value="Drinks">Drinks</option>
+         <option value="Confections">Confections</option>
       </select>
       <span>Update Image</span>
       <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">

@@ -21,7 +21,7 @@ if(isset($_POST['delete'])){
 if(isset($_POST['delete_all'])){
    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
    $delete_cart_item->execute([$user_id]);
-   // header('location:cart.php');
+   header('location:cart.php');
    $message[] = 'deleted all from cart!';
 }
 
@@ -90,7 +90,7 @@ $grand_total = 0;
             <input type="number" name="qty" class="qty" min="1" max="99" value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
             <button type="submit" class="fas fa-edit" name="update_qty"></button>
          </div>
-         <div class="sub-total"> Sub Total : <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>
+         <div class="sub-total"> Sub Total : <span>₱<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>
       </form>
       <?php
                $grand_total += $sub_total;
@@ -103,7 +103,7 @@ $grand_total = 0;
    </div>
 
    <div class="cart-total">
-      <p>Cart Total : <span>$<?= $grand_total; ?></span></p>
+      <p>Cart Total : <span>₱<?= $grand_total; ?></span></p>
       <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">Proceed to Checkout</a>
    </div>
 
@@ -119,23 +119,9 @@ $grand_total = 0;
 <!-- shopping cart section ends -->
 
 
-
-
-
-
-
-
-
-
 <!-- footer section starts  -->
 <?php include 'components/footer.php'; ?>
 <!-- footer section ends -->
-
-
-
-
-
-
 
 
 <!-- custom js file link  -->
